@@ -37,6 +37,8 @@ enum Enum : quint8 {
 	Top = 2,
 	/// Usually renders over fullscreen windows
 	Overlay = 3,
+	/// Supposed to render above tiling windows, but below floating ones
+	Middle = 4,
 };
 Q_ENUM_NS(Enum);
 

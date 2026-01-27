@@ -87,6 +87,7 @@
       <entry name="bottom" value="1"/>
       <entry name="top" value="2"/>
       <entry name="overlay" value="3"/>
+      <entry name="middle" value="4"/>
     </enum>
 
     <!-- Version 3 additions -->

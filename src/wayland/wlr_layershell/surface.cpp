@@ -37,6 +37,7 @@ toWaylandLayer(const WlrLayer::Enum& layer) noexcept {
 	case WlrLayer::Bottom: return QtWayland::zwlr_layer_shell_v1::layer_bottom;
 	case WlrLayer::Top: return QtWayland::zwlr_layer_shell_v1::layer_top;
 	case WlrLayer::Overlay: return QtWayland::zwlr_layer_shell_v1::layer_overlay;
+	case WlrLayer::Middle: return QtWayland::zwlr_layer_shell_v1::layer_middle;
 	}
 
 	return QtWayland::zwlr_layer_shell_v1::layer_top;
