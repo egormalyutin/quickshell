@@ -26,7 +26,7 @@ Item {
 	/// Defaults to true if any corner has a non-zero radius, otherwise false.
 	property /*bool*/alias antialiasing: rectangle.antialiasing
 	/// The background color of the rectangle, which goes under its content.
-	property color color: "white"
+	property /*color*/alias color: shader.backgroundColor
 	/// See @@QtQuick.Rectangle.border.
 	property clippingRectangleBorder border
 	/// Radius of all corners. Defaults to 0.
@@ -72,14 +72,21 @@ Item {
 			anchors.fill: parent
 			anchors.margins: root.contentInsideBorder ? root.border.width : 0
 		}
+	}
 
-		layer.enabled: true
-		layer.samplerName: "content"
-		layer.effect: ShaderEffect {
-			fragmentShader: `qrc:/Quickshell/Widgets/shaders/cliprect${root.contentUnderBorder ? "-ub" : ""}.frag.qsb`
-			property Rectangle rect: rectangle
-			property color backgroundColor: root.color
-			property color borderColor: root.border.color
-		}
+	ShaderEffectSource {
+		id: shaderSource
+		hideSource: true
+		sourceItem: contentItemContainer
+	}
+
+	ShaderEffect {
+		id: shader
+		anchors.fill: root
+		fragmentShader: `qrc:/Quickshell/Widgets/shaders/cliprect${root.contentUnderBorder ? "-ub" : ""}.frag.qsb`
+		property Rectangle rect: rectangle
+		property color backgroundColor: "white"
+		property color borderColor: root.border.color
+		property ShaderEffectSource content: shaderSource
 	}
 }
