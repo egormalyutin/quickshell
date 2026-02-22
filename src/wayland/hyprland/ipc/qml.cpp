@@ -41,6 +41,8 @@ void HyprlandIpcQml::dispatch(const QString& request) {
 	HyprlandIpc::instance()->dispatch(request);
 }
 
+void HyprlandIpcQml::keyword(const QString& request) { HyprlandIpc::instance()->keyword(request); }
+
 HyprlandMonitor* HyprlandIpcQml::monitorFor(QuickshellScreenInfo* screen) {
 	return HyprlandIpc::instance()->monitorFor(screen);
 }

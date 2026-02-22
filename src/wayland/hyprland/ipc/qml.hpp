@@ -47,6 +47,9 @@ public:
 	/// Execute a hyprland [dispatcher](https://wiki.hyprland.org/Configuring/Dispatchers).
 	Q_INVOKABLE static void dispatch(const QString& request);
 
+	/// Execute a hyprland keyword
+	Q_INVOKABLE static void keyword(const QString& request);
+
 	/// Get the HyprlandMonitor object that corrosponds to a quickshell screen.
 	Q_INVOKABLE static HyprlandMonitor* monitorFor(QuickshellScreenInfo* screen);
 

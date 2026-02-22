@@ -203,6 +203,23 @@ void HyprlandIpc::dispatch(const QString& request) {
 	);
 }
 
+void HyprlandIpc::keyword(const QString& request) {
+	this->makeRequest(
+	    ("keyword " + request).toUtf8(),
+	    [request](bool success, const QByteArray& response) {
+		    if (!success) {
+			    qCWarning(logHyprlandIpc) << "Failed to request keyword change of" << request;
+			    return;
+		    }
+
+		    if (response != "ok") {
+			    qCWarning(logHyprlandIpc)
+			        << "Keyword request" << request << "failed with error" << response;
+		    }
+	    }
+	);
+}
+
 ObjectModel<HyprlandMonitor>* HyprlandIpc::monitors() { return &this->mMonitors; }
 
 ObjectModel<HyprlandWorkspace>* HyprlandIpc::workspaces() { return &this->mWorkspaces; }
