@@ -25,17 +25,20 @@ set shell id.
 - Added support for IPC signal listeners.
 - Added Quickshell version checking and version gated preprocessing.
 - Added a way to detect if an icon is from the system icon theme or not.
+- Added vulkan support to screencopy.
 
 ## Other Changes
 
 - FreeBSD is now partially supported.
 - IPC operations filter available instances to the current display connection by default.
 - PwNodeLinkTracker ignores sound level monitoring programs.
+- Replaced breakpad with cpptrace.
 
 ## Bug Fixes
 
 - Fixed volume control breaking with pipewire pro audio mode.
 - Fixed volume control breaking with bluez streams and potentially others.
+- Fixed volume control breaking for devices without route definitions.
 - Fixed escape sequence handling in desktop entries.
 - Fixed volumes not initializing if a pipewire device was already loaded before its node.
 - Fixed hyprland active toplevel not resetting after window closes.
@@ -45,7 +48,12 @@ set shell id.
 - Fixed asynchronous loaders not working before window creation.
 - Fixed memory leak in IPC handlers.
 - Fixed ClippingRectangle related crashes.
+- Fixed crashes when monitors are unplugged.
+- Fixed crashes when default pipewire devices are lost.
 
 ## Packaging Changes
 
-`glib` and `polkit` have been added as dependencies when compiling with polkit agent support.
+- `glib` and `polkit` have been added as dependencies when compiling with polkit agent support.
+- `vulkan-headers` has been added as a build-time dependency for screencopy (Vulkan backend support).
+- `breakpad` has been replaced by `cpptrace`, which is far easier to package, and the `CRASH_REPORTER` cmake variable has been replaced with `CRASH_HANDLER` to stop this from being easy to ignore.
+- `DISTRIBUTOR_DEBUGINFO_AVAILABLE` was removed as it is no longer important without breakpad.
